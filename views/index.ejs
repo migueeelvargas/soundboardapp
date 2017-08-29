@@ -1,0 +1,44 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Authentication | CSE 135 HW3 </title>
+</head>
+<body>
+
+	<div class="container">
+		<!-- HEADER -->
+		<div class="header">
+			<h1>Soundboard App</h1>
+			<h2>Login</h2>
+		</div>
+	
+		<!-- LOGIN FORM -->
+		<div class="login">
+			<form id="loginForm" action="/login" method="POST">
+				<!-- Email -->
+				<label for="email">
+					<input type="text" name="email" 
+						id="email" placeholder="Email" required></input>
+				</label>
+				
+				<!-- Password -->
+				<label for="password">
+					<input type="password" name="password" 
+					id="password" placeholder="Password" required></input>
+				</label>
+
+				<!-- Submit -->
+				<input type="submit" value="Submit" id="submit">
+			</form>
+		</div>
+
+		<!-- REGISTER link -->
+		<div class="signup">
+			<p>Don't have an account? </p>
+			<span><a href="/signup">Sign up here.</a></span>
+		</div>
+	</div>
+
+</body>
+</html>

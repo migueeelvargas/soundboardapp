@@ -1,0 +1,50 @@
+<!-- views/signup.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up | CSE 135 HW3 </title>
+</head>
+<body>
+
+	<div class="container">
+		<!-- HEADER -->
+		<div class="header">
+			<h1>Soundboard App</h1>
+			<h2>Sign Up</h2>
+		</div>
+	
+		<!-- SIGNUP FORM -->
+		<div class="signup">
+			<form id="signupForm" action="/signup" method="POST">
+				<!-- Full Name -->
+				<label for="name">
+					<input type="text" name="name" 
+						id="name" placeholder="Full Name" required></input>
+				</label>
+
+				<!-- Email -->
+				<label for="email">
+					<input type="text" name="email" 
+						id="email" placeholder="Email" required></input>
+				</label>
+				
+				<!-- Password -->
+				<label for="password">
+					<input type="password" name="password" 
+					id="password" placeholder="Password" required></input>
+				</label>
+
+				<!-- Submit -->
+				<input type="submit" value="Submit" id="submit">
+			</form>
+		</div>
+
+		<!-- LOGIN link -->
+		<div class="login-link">
+			<p>Already have an account? </p>
+			<span><a href="/">Login here.</a></span>
+		</div>
+	</div>
+
+</body>
+</html>
