@@ -10,8 +10,9 @@ const session		= require('express-session')
 const path		= require('path')
 
 const conn	= mysql.createConnection({
-	host		: "localhost",
-	user		: "root",
+	host		: "db4free.net",
+	port 		: "3306",
+	user		: "miguelvargas",
 	password	: "ilovebourbon",
 	database 	: "cse135crud"
 });
