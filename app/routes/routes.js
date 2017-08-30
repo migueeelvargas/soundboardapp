@@ -29,6 +29,7 @@ module.exports = function (app, express, conn) {
 		// Log query string
 		console.log(addNewUserSQL);
 
+		// Execute query command
 		conn.query(addNewUserSQL, function(err, result) {
 			if (err) throw err;
 			console.log("New user added.")
@@ -80,6 +81,12 @@ module.exports = function (app, express, conn) {
 			email: req.session.email,
 			name: req.session.name
 		});
+	})
+
+	// LOG OUT OF SESSION
+	app.post('/logout', function(req, res) {
+		req.session.destroy();
+		res.redirect('/');
 	})
 
 }
