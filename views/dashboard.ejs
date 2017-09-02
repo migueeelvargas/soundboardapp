@@ -3,15 +3,35 @@
 <html>
 <head>
 	<title>Dashboard | CSE 135 HW3 </title>
+	<link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
 
 	<div class="container">
-		<!-- HEADER -->
-		<div class="header">
-			<h1>Soundboard App</h1>
-			<h2>Hello <%= name %>!</h2>
-		</div>
+		<header id="dashboard-header">
+			<h1><%= firstName %>'s Soundboard.</h1>
+		</header>
 
+		<main id="dashboard-main">
+			<% for (var i = 0; i < data.length; i++) { %>
+				<a href="/app/<%= userid %>/soundboard/<%= data[i].sbid %>">
+					<div id="dashboard-thumb">
+						<div id="dashboard-img">
+							<img src="<%= data[i].thumbnail %>">
+						</div>
+						<div id="dashboard-title">
+							<h2><%= data[i].title %></h2>
+						</div>
+					</div>
+				</a>
+			<% } %>
+		</main>
+
+		<footer>
+			<h3><a href="/logout">Logout</a></h3>
+		</footer>
+	</div>
+
+	<script src="js/dashboard.js"></script>
 </body>
 </html>

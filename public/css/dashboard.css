@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,700');
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background-color: #eee;
+	margin: 0;
+	padding: 0;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.container {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+#dashboard-header > h1 {
+	font-size: 60px;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 5px;
+	font-weight: 300;
+}
+#dashboard-main > a,
+#dashboard-main > a:visited,
+#dashboard-main > a:hover,
+#dashboard-main > a:active {
+	text-decoration: none;
+	color: #000;
+}
+
+#dashboard-thumb {
+	position: relative;
+	min-height: 1px;
+	width: 25%;
+	display: inline-block;
+	margin: 0;
+}
+
+#dashboard-img,
+#dashboard-title {
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+#dashboard-img > img {
+	height: 100%;
+	width: 100%;
+}
+
+#dashboard-title > h2 {
+	background-color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 300;
+	margin: 0;
+	line-height: 60px;
+	margin-top: -5px;
+	overflow: hidden;
+}
+
+header, main, nav, section {
+	display: block;
+}
+
+.clearfix:before,
+.clearfix:after,
+.container-fluid:after, 
+.container-fluid:before,
+.container:before,
+.container:after,
+.row:before,
+.row:after,
+.form-horizontal .form-group:before,
+.form-horizontal .form-group:after,
+.btn-toolbar:before,
+.btn-toolbar:after,
+.btn-group-vertical > .btn-group:before,
+.btn-group-vertical > .btn-group:after,
+.nav:before,
+.nav:after,
+.navbar:before,
+.navbar:after,
+.navbar-header:before,
+.navbar-header:after,
+.navbar-collapse:before,
+.navbar-collapse:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after,
+.container-fluid:after,
+.container:after,
+.row:after,
+.form-horizontal .form-group:after,
+.btn-toolbar:after,
+.btn-group-vertical > .btn-group:after,
+.nav:after,
+.navbar:after,
+.navbar-header:after,
+.navbar-collapse:after {
+  clear: both;
+}

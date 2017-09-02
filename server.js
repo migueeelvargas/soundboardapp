@@ -9,6 +9,7 @@ const session		= require('express-session')
 
 const path		= require('path')
 
+// MySQL db config
 const conn	= mysql.createConnection({
 	host		: "db4free.net",
 	port 		: "3306",
@@ -17,16 +18,10 @@ const conn	= mysql.createConnection({
 	database 	: "cse135crud"
 });
 
+// Connect to MySQL database
 conn.connect(function(err) {
 	if (err) throw err;
 	console.log("Connected to MySQL database.");
-
-	// var sql = "CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255), name VARCHAR(255), password VARCHAR(255))";
-
-	// conn.query(sql, function (err, result) {
-	// 	if (err) throw err;
-	// 	console.log("Table created");
-	// })
 })
 
 // SETUP EXPRESS application
@@ -36,6 +31,9 @@ app.use(bodyParser.json())
 
 // sets up ejs as view engine
 app.set('view engine', 'ejs')
+
+// path to all public file (CSS, JS, imgs, etc.)
+app.use(express.static(__dirname + '/public'))
 
 // setup session
 app.use(session({

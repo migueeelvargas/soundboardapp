@@ -1,0 +1,41 @@
+<!-- views/soundboard.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Soundboard | CSE 135 HW3 </title>
+	<link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+	<div class="container">
+		<header id="dashboard-header">
+			<h1>Soundboard:<i>soundboardname</i></h1>
+		</header>
+
+		<main id="dashboard-main">
+			<% for (var i = 0; i < data.length; i++) { %>
+				<div id="dashboard-thumb">
+					<div id="dashboard-img">
+						<img src="<%= data[i].image %>">
+					</div>
+					<div id="dashboard-title">
+						<h2><%= data[i].name %></h2>
+					</div>
+
+					<div id="soundboard-sound">
+						<audio controls>
+							<source src="<%= data[i].sound %>">
+						</audio>
+					</div>
+				</div>
+			<% } %>
+		</main>
+
+		<footer>
+			<h3><a href="/logout">Logout</a></h3>
+		</footer>
+	</div>
+
+	<script src="/js/dashboard.js"></script>
+</body>
+</html>

@@ -16,7 +16,3 @@
 - app is connected to a local MySQL database.
 - All new users & logins use MySQL database for verification.
 - logging (A lot of it).
-
-
-
-

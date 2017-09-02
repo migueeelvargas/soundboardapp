@@ -13,26 +13,32 @@ module.exports = function (app, express, conn) {
 
 	// CREATE NEW USER
 	app.post('/signup', function (req, res) {
-		var name = req.body.name;
+		var firstName = req.body.firstName;
+		var lastName = req.body.lastName;
 		var email = req.body.email;
 		var password = req.body.password;
 
 		// Log user inputs
-		console.log("Name: " + name);
+		console.log("First Name: " + firstName);
+		console.log("Last Name: " + lastName);
 		console.log("Email: " + email);
 		console.log("Password: " + password);
 
 		var addNewUserSQL = 
-			"INSERT INTO users (name, email, password) VALUES (\'" +
-			name + "\', \'" + email + "\', \'" + password + "\')";
+			"INSERT INTO users (firstName, lastName, email, password) " +
+			"VALUES (\'" + firstName + "\', \'" + lastName + "\', \'" + 
+			email + "\', \'" + password + "\')";
 
 		// Log query string
 		console.log(addNewUserSQL);
 
+		var newUserID;
+
 		// Execute query command
 		conn.query(addNewUserSQL, function(err, result) {
 			if (err) throw err;
-			console.log("New user added.")
+			console.log("New user added.");
+			console.log("Result return: " + result);
 		})
 
 		res.render('index.ejs');
@@ -66,9 +72,14 @@ module.exports = function (app, express, conn) {
 			else {
 				console.log("User found in database.");
 				req.session.email = email;
-				req.session.name = result[0].name;
+				req.session.firstName = result[0].firstName;
+				req.session.lastName = result[0].lastName;
+				req.session.userid = result[0].userid;
+
 				console.log("Email saved in session: " + req.session.email);
-				console.log("Name saved in session: " + req.session.name);
+				console.log("First Name saved in session: " + req.session.firstName);
+				console.log("Last Name saved in session: " + req.session.lastName);
+				console.log("UserID saved in session: " + req.session.userid);
 
 				res.redirect('/app');
 			}
@@ -76,16 +87,55 @@ module.exports = function (app, express, conn) {
 	})
 
 	// DASHBOARD AREA
+	var data = {};
+
 	app.get('/app', function (req, res) {
-		res.render('dashboard.ejs', {
-			email: req.session.email,
-			name: req.session.name
+
+		var getSBdataSQL = "SELECT * FROM soundboards " +
+			"WHERE userid = " + req.session.userid;
+
+		console.log(getSBdataSQL);
+
+		conn.query(getSBdataSQL, function (err, result) {
+			if (err) throw err;
+
+			data = JSON.stringify(result);
+			console.log("Data: " + data);
+
+			res.render('dashboard.ejs', {
+				email: req.session.email,
+				firstName: req.session.firstName,
+				lastName: req.session.lastName,
+				userid: req.session.userid,
+				data: result
+			});	
+		});
+	})
+
+	// INDIVIDUAL SOUNDBOARD PAGE
+	app.get('/app/:userid/soundboard/:sbid', function (req, res) {
+		console.log(req.params);
+
+		var getSoundsSQL = "SELECT * FROM sounds " + 
+		"WHERE sbid = " + req.params.sbid
+
+		conn.query(getSoundsSQL, function (err, result) {
+			if (err) throw err;
+
+			res.render('soundboard.ejs', {
+				email: req.session.email,
+				firstName: req.session.firstName,
+				lastName: req.session.lastName,
+				userid: req.session.userid,
+				data: result
+			});
 		});
 	})
 
 	// LOG OUT OF SESSION
-	app.post('/logout', function(req, res) {
+	app.get('/logout', function(req, res) {
 		req.session.destroy();
+		console.log("Session logout");
 		res.redirect('/');
 	})
 
