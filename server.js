@@ -11,11 +11,11 @@ const path		= require('path')
 
 // MySQL db config
 const conn	= mysql.createConnection({
-	host		: "db4free.net",
+	host		: "ipobfcpvprjpmdo9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
 	port 		: "3306",
-	user		: "miguelvargas",
-	password	: "ilovebourbon",
-	database 	: "cse135crud"
+	user		: "yfa1b5xr3062ctem",
+	password	: "enpavzdbydherk36",
+	database 	: "apz88ekivr2vs5ov"
 });
 
 // Connect to MySQL database
