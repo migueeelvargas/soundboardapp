@@ -92,7 +92,7 @@ module.exports = function (app, express, conn) {
 	app.get('/app', function (req, res) {
 
 		var getSBdataSQL = "SELECT * FROM soundboards " +
-			"WHERE userid = " + req.session.userid;
+			"WHERE userid = " + req.session.userid "OR public = 1";
 
 		console.log(getSBdataSQL);
 
