@@ -234,6 +234,16 @@ module.exports = function(app, express, conn, upload) {
 
   // LOG OUT OF SESSION
   app.get("/logout", function(req, res) {
+    const update =
+      "UPDATE Logs SET logouts = logouts + 1 WHERE userid = " +
+      "'" +
+      req.session.userid +
+      "'";
+    conn.query(update, function(err, result) {
+      if (err) throw err;
+      console.log("attempts updated.");
+    });
+
     req.session.destroy();
     console.log("Session logout");
     res.redirect("/");
