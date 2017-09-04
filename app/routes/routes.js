@@ -1,4 +1,5 @@
 // app/routes/routes.js
+
 module.exports = function(app, express, conn, upload) {
   // HOME PAGE (with login links)
   app.get("/", function(req, res) {
@@ -267,7 +268,79 @@ module.exports = function(app, express, conn, upload) {
   		})
   	})
   })
+    //SORT: PUBLIC BOARDS
+    app.get('/app/public', function (req, res) {
 
+		var getSBpubdataSQL = "SELECT * FROM soundboards " +
+			"WHERE public = 1;";
+
+		console.log(getSBpubdataSQL);
+
+		conn.query(getSBpubdataSQL, function (err, result) {
+			if (err) throw err;
+
+			data = JSON.stringify(result);
+			console.log("Data: " + data);
+
+			res.render('public.ejs', {
+				email: req.session.email,
+				firstName: req.session.firstName,
+				lastName: req.session.lastName,
+				userid: req.session.userid,
+				data: result
+			});	
+		});
+	})
+
+    
+    //SORT: PRIVATE BOARDS
+    app.get('/app/private', function(req,res){
+    		var getSBprivdataSQL = "SELECT * FROM soundboards " +
+			"WHERE userid = " + req.session.userid + " AND public = 0;";
+
+		console.log(getSBprivdataSQL);
+
+		conn.query(getSBprivdataSQL, function (err, result) {
+			if (err) throw err;
+
+			data = JSON.stringify(result);
+			console.log("Data: " + data);
+
+			res.render('private.ejs', {
+				email: req.session.email,
+				firstName: req.session.firstName,
+				lastName: req.session.lastName,
+				userid: req.session.userid,
+				data: result
+			});	
+		});
+	})
+
+    
+    //SORT: LIST VIEW
+    app.get('/app/list', function(req,res){
+      var getSBdataSQL = "SELECT * FROM soundboards " +
+			"WHERE userid = " + req.session.userid + " OR public = 1;";
+
+		console.log(getSBdataSQL);
+
+		conn.query(getSBdataSQL, function (err, result) {
+			if (err) throw err;
+
+			data = JSON.stringify(result);
+			console.log("Data: " + data);
+
+			res.render('list.ejs', {
+				email: req.session.email,
+				firstName: req.session.firstName,
+				lastName: req.session.lastName,
+				userid: req.session.userid,
+				data: result
+			});	
+		});
+	})
+
+ 
   // LOG OUT OF SESSION
   app.get("/logout", function(req, res) {
     const update =

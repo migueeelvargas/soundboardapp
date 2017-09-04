@@ -1,0 +1,78 @@
+<!-- views/public.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Public | CSE 135 HW3 </title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+	<div class="container">
+		<header id="dashboard-header">
+			<h1><%= firstName %>'s Soundboard.</h1>
+		</header>
+
+        <!-- NAV BAR edited to PULLDOWN  -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+	  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	  			<span class="icon-bar"></span>
+	     		<span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="navbarNav">
+	        <ul class="nav navbar-nav navbar-right">
+	          <li class="active">
+              <a href="/app" id="home">Home </a>
+            </li>
+	          <li>
+	          	<a href="/app/public" id="publicOpt">Public</a>
+            </li>
+            <li>
+	          	<a href="/app/private"id="privateOpt">Private</a>
+	          </li>
+            <li>
+              <a href="#" id="alphabetical" onclick="createSoundboard(data, 1, 'full');switchTheme('hpTheme');return false;">Alphabetical</a>
+            </li>
+            <li>
+              <a href="/app/list" id="list">List</a>
+          </li>
+          <li>
+          <a href="/logout" id="logout">Logout</a>
+          </li>
+      </ul>
+	      </div>
+	    </div>
+	  </nav>
+ 
+		<main id="dashboard-main">
+			<% for (var i = 0; i < data.length; i++) { %>
+				<a href="/app/<%= userid %>/soundboard/<%= data[i].sbid %>">
+					<div id="dashboard-thumb">
+						<div id="dashboard-img">
+							<img src="<%= data[i].thumbnail %>">
+						</div>
+                        <div id="dashboard-title">
+                          <h2>
+                            <%= data[i].title + " " %>
+                            <% if (data[i].public == 1){ %>
+                              <%- "<img src='/img/glyphiconsunlock.png' alt='public' id='unlock'>" %> 
+                             <%} 
+                               else if (data[i].public == 0){ %> 
+                                 <%- "<img src='/img/glyphiconslock.png' alt='private' id='lock'>" %>
+                             <%}%>
+                          </h2>  
+						</div>
+					</div>
+				</a>
+			<% } %>
+		</main>
+
+		<footer>
+		</footer>
+	</div>
+
+	<script src="/js/dashboard.js"></script>
+</body>
+</html>
