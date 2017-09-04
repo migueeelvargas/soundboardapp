@@ -59,7 +59,7 @@
 			<% for (var i = 0; i < data.length; i++) { %>
 				<a href="/app/<%= userid %>/soundboard/<%= data[i].sbid %>">
 					<div id="dashboard-thumb">
-						<div id="dashboard-img" style="background-image: url(<%= data[i].thumbnail %>); background-position: center center; background-size: cover">
+						<div id="dashboard-img" style="background-image: url('<%= data[i].thumbnail %>'); background-position: center center; background-size: cover">
 							<!-- <img src="<%= data[i].thumbnail %>"> -->
 						</div>
               <div id="dashboard-title">
