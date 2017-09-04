@@ -19,8 +19,16 @@
 						<div id="dashboard-img">
 							<img src="<%= data[i].thumbnail %>">
 						</div>
-						<div id="dashboard-title">
-							<h2><%= data[i].title %></h2>
+                        <div id="dashboard-title">
+                          <h2>
+                            <%= data[i].title + " " %>
+                            <% if (data[i].public == 1){ %>
+                              <%- "<img src='/img/glyphiconsunlock.png' alt='public' id='unlock'>" %> 
+                             <%  } 
+                               else if (data[i].public == 0){ %> 
+                                 <%- "<img src='/img/glyphiconslock.png' alt='private' id='lock'>" %>
+                              <% }%>
+                          </h2>  
 						</div>
 					</div>
 				</a>
