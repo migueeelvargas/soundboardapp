@@ -2,6 +2,8 @@ const express	= require('express')
 const app		= express()
 const port		= process.env.PORT || 8081
 const mysql		= require('mysql')
+const multer	= require('multer')
+const mime 		= require('mime-types')
 
 const morgan		= require('morgan')
 const bodyParser	= require('body-parser')
@@ -42,8 +44,23 @@ app.use(session({
 	saveUninitialized: true
 }))
 
-// APP ROUTES
-const routes = require('./app/routes/routes')(app, express, conn);
+// FILE UPLOAD
+const storage	= multer.diskStorage({
+	destination: function (req, file, callback) {
+		callback(null, __dirname + '/public/uploads');
+	},
+	filename: function (req, file, callback) {
+		// file.fieldname + '-' + 
+		var newFileName = Date.now() + '.' + mime.extension(file.mimetype);
+		callback(null, newFileName);
+	}
+});
 
+var upload = multer({ storage: storage }).array('userFile', 2);
+
+// APP ROUTES
+const routes = require('./app/routes/routes')(app, express, conn, upload);
+
+// CONNECT 
 app.listen(port)
 console.log('The magic happens on port ' + port)

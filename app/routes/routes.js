@@ -1,5 +1,5 @@
 // app/routes/routes.js
-module.exports = function (app, express, conn) {
+module.exports = function (app, express, conn, upload) {
 
 	// HOME PAGE (with login links)
 	app.get('/', function (req, res) {
@@ -115,6 +115,7 @@ module.exports = function (app, express, conn) {
 	// INDIVIDUAL SOUNDBOARD PAGE
 	app.get('/app/:userid/soundboard/:sbid', function (req, res) {
 		console.log(req.params);
+		req.session.currsbid = req.params.sbid;
 
 		var getSoundsSQL = "SELECT * FROM sounds " + 
 		"WHERE sbid = " + req.params.sbid
@@ -128,6 +129,31 @@ module.exports = function (app, express, conn) {
 				lastName: req.session.lastName,
 				userid: req.session.userid,
 				data: result
+			});
+		});
+	})
+
+	app.post('/app/upload', function(req, res){
+		upload(req, res, function(err) {
+			if (err)
+				return res.end("Error uploading file.");
+
+			console.log(req.files[0].filename);
+			console.log(req.files[1].filename);
+
+			var addNewSoundSQL = 
+			"INSERT INTO sounds (sbid, name, image, sound) " +
+			"VALUES (" + req.session.currsbid + ", \'" 
+				+ req.body.soundName + "\', \'/uploads/" 
+				+ req.files[0].filename + "\', \'/uploads/" 
+				+ req.files[1].filename + "\')";
+
+			console.log(addNewSoundSQL);
+
+			conn.query(addNewSoundSQL, function (err, result) {
+				if (err) throw err;
+
+				res.redirect('/app/' + req.session.userid + '/soundboard/' + req.session.currsbid);
 			});
 		});
 	})
