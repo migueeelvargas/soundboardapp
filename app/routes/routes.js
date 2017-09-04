@@ -133,10 +133,11 @@ module.exports = function (app, express, conn, upload) {
 		});
 	})
 
+	// UPLOAD NEW SOUND ON SOUNDBOARD.
 	app.post('/app/upload', function(req, res){
 		upload(req, res, function(err) {
 			if (err)
-				return res.end("Error uploading file.");
+				return res.end("Error uploading file." + err);
 
 			console.log(req.files[0].filename);
 			console.log(req.files[1].filename);
