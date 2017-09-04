@@ -10,8 +10,6 @@ module.exports = function(app, express, conn, upload) {
     res.render("signup.ejs"); // load the signup.ejs file
   });
 
- 
-
   app.post("/signup", function(req, res) {
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
@@ -84,8 +82,6 @@ module.exports = function(app, express, conn, upload) {
       }
     });
   });
-
-
 
   // LOG USER IN
   app.post("/login", function(req, res) {
