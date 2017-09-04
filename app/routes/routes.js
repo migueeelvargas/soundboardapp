@@ -148,7 +148,7 @@ module.exports = function(app, express, conn, upload) {
           console.log("attempts updated.");
         });
 
-        res.redirect("/nodejs/app");
+        res.redirect("/app");
       }
     });
   });
