@@ -1,8 +1,8 @@
-<!-- views/dashboard.ejs -->
+<!-- views/list.ejs -->
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dashboard | CSE 135 HW3 </title>
+	<title>List | CSE 135 HW3 </title>
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
@@ -49,10 +49,6 @@
 		<main id="dashboard-main">
 			<% for (var i = 0; i < data.length; i++) { %>
 				<a href="/app/<%= userid %>/soundboard/<%= data[i].sbid %>">
-					<div id="dashboard-thumb">
-						<div id="dashboard-img">
-							<img src="<%= data[i].thumbnail %>">
-						</div>
                         <div id="dashboard-title">
                           <h2>
                             <%= data[i].title + " " %>
@@ -64,7 +60,6 @@
                              <%}%>
                           </h2>  
 						</div>
-					</div>
 				</a>
 			<% } %>
 		</main>
