@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs");
 
 // path to all public file (CSS, JS, imgs, etc.)
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/nodejs/public"));
 
 // setup session
 app.use(
