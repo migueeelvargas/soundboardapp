@@ -232,8 +232,42 @@ module.exports = function(app, express, conn, upload) {
     });
   });
 
+  app.post("/app/soundboard", function(req, res) {
+  	upload(req, res, function(err) {
+  		if (err) return res.end("Error uploading file.");
+
+  		console.log(req.files[0].filename);
+
+  		var addNewSbSQL = 
+  			"INSERT INTO soundboards (userid, title, public, thumbnail) " +
+  			"VALUES (" +
+  			req.session.userid + ", \'" +
+  			req.body.title + "\', " +
+  			req.body.public + ", \'/uploads/" +
+  			req.files[0].filename + "\')";
+
+  		console.log(addNewSbSQL);
+
+  		conn.query(addNewSbSQL, function(err, result) {
+  			if (err) throw err;
+
+  			res.redirect('/app');
+  		})
+  	})
+  })
+
   // LOG OUT OF SESSION
   app.get("/logout", function(req, res) {
+    const update =
+      "UPDATE Logs SET logouts = logouts + 1 WHERE userid = " +
+      "'" +
+      req.session.userid +
+      "'";
+    conn.query(update, function(err, result) {
+      if (err) throw err;
+      console.log("attempts updated.");
+    });
+
     req.session.destroy();
     console.log("Session logout");
     res.redirect("/");

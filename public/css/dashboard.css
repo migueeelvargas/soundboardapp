@@ -135,7 +135,8 @@ header, main, nav, section {
 	background-color: rgba(0,0,0,0.4);
 }
 
-.addSoundMenuContent {
+.addSoundMenuContent,
+.addSbMenuContent {
 	background-color: #fff;
 	margin: 15% auto;
 	padding: 20px;
@@ -143,7 +144,8 @@ header, main, nav, section {
 	width: 40%;
 }
 
-.addSoundMenuContent > h1 {
+.addSoundMenuContent > h1,
+.addSbMenuContent > h1 {
 	text-transform: uppercase;
 	font-weight: 300;
 }
