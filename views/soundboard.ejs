@@ -12,6 +12,46 @@
 			<h1>Soundboard:<i>#name</i></h1>
 		</header>
 
+		<section id="dashboard-upload">
+			
+
+			<!-- Trigger/Open modal -->
+			<button id="addSoundBtn">Add Sound</button>
+			
+			<!-- The modal -->
+			<div id="addSoundModal" class="soundboardModal">
+				<!-- Modal content -->
+				<div class="addSoundMenuContent">
+					<span class="close">&times;</span>
+					<h1>Add sound</h1>
+					<form id				= "uploadForm"
+								enctype		= "multipart/form-data"
+								action 		= "/app/upload"
+								method 		= "POST"
+					>
+						<label for="soundName"><i>Name: </i>
+							<input type="text" name="soundName" id="soundName"
+								placeholder="Name" required></input>
+							</label>
+						</label>
+						<br>
+						<label for="userFile"><i>Image: </i>
+							<input type="file" name="userFile" id="imgInput" required></input>
+							</label>
+						</label>
+						<br>
+						<label for="userFile"><i>Sound: </i>
+							<input type="file" name="userFile" id="soundInput" required></input>
+							</label>
+						</label>
+						<br>
+						<input type="submit" value="Upload" name="submit">
+					</form>
+				</div>
+
+			</div>
+		</section>
+
 		<main id="dashboard-main">
 			<% for (var i = 0; i < data.length; i++) { %>
 				<div id="dashboard-thumb">
@@ -35,7 +75,10 @@
 			<h3><a href="/logout">Logout</a></h3>
 		</footer>
 	</div>
-
-	<script src="/js/dashboard.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/js/soundboard.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

@@ -7,6 +7,13 @@
 }
 
 
+@font-face {
+    font-family: 'Glyphicons Halflings';
+
+    src: url('/fonts/glyphicons-halflings-regular.eot');
+    src: url('/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	background-color: #eee;
@@ -61,7 +68,25 @@ body {
 	min-height: 1px;
 	width: 25%;
 	display: inline-block;
-	margin: 0;
+	margin: 10px;
+}
+
+#dashboard-title {
+	background-color: #fff;
+}
+#dashboard-title > h2 {
+	display: inline;
+}
+
+#dashboard-title > span {
+	margin-top: 15px;
+	float: right;
+}
+
+#dashboard-img {
+	width: auto;
+	height: 250px;
+	background-color: #fff;
 }
 
 #dashboard-img,
@@ -648,3 +673,50 @@ input {
 .show {
     display: block;
 }
+
+.soundboardModal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+.addSoundMenuContent,
+.addSbMenuContent {
+	background-color: #fff;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 40%;
+}
+
+.addSoundMenuContent > h1,
+.addSbMenuContent > h1 {
+	text-transform: uppercase;
+	font-weight: 300;
+}
+
+.addSoundMenuContent > form > label {
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	line-height: 28px;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+

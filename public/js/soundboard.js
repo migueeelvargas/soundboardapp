@@ -1,8 +1,8 @@
 // get the modal
-var modal = document.getElementById('addSbModal');
+var modal = document.getElementById('addSoundModal');
 
 // get the button that opens the modal
-var btn = document.getElementById("addSbBtn");
+var btn = document.getElementById("addSoundBtn");
 
 // get the <span> element that closes the modal;
 var span = document.getElementsByClassName("close")[0];
@@ -23,3 +23,4 @@ window.onclick = function(event) {
 		modal.style.display = "none";
 	}
 }
+

@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>Dashboard | CSE 135 HW3 </title>
-    <link rel="stylesheet" href="/css/dashboard.css">
+	<link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
 
@@ -46,23 +46,69 @@
 	    </div>
 	  </nav>
  
+		<!-- ADD SOUNDBOARD OPTION -->
+		<section id="dashboard-addSB">
+			<!-- Trigger/Open modal -->
+			<button id="addSbBtn">Add Sound</button>
+			
+			<!-- The modal -->
+			<div id="addSbModal" class="soundboardModal">
+				<!-- Modal content -->
+				<div class="addSbMenuContent">
+					<span class="close">&times;</span>
+					<h1>Add sound</h1>
+					<form id				= "uploadForm"
+								enctype		= "multipart/form-data"
+								action 		= "/app/soundboard"
+								method 		= "POST"
+					>
+						<label for="sbTitle"><i>Title: </i>
+							<input type="text" name="title" id="title"
+								placeholder="Name" required></input>
+							</label>
+						</label>
+						<br>
+						<label for="public"><i>Public: </i>
+							<input type="radio" name="public" value="1" id="public">
+								Yes
+							</input>
+							<input type="radio" name="public" value="0" id="public" checked>
+								No
+							</input>
+						</label>
+						<br>
+						<label for="userFile"><i>Sound: </i>
+							<input type="file" name="userFile" id="soundInput" required></input>
+							</label>
+						</label>
+						<br>
+						<input type="submit" value="Create" name="submit">
+					</form>
+				</div>
+
+			</div>
+		</section>
+
 		<main id="dashboard-main">
 			<% for (var i = 0; i < data.length; i++) { %>
 				<a href="/app/<%= userid %>/soundboard/<%= data[i].sbid %>">
 					<div id="dashboard-thumb">
-						<div id="dashboard-img">
-							<img src="<%= data[i].thumbnail %>">
+						<div id="dashboard-img" style="background-image: url('<%= data[i].thumbnail %>'); background-position: center center; background-size: cover">
+							<!-- <img src="<%= data[i].thumbnail %>"> -->
 						</div>
-                        <div id="dashboard-title">
-                          <h2>
-                            <%= data[i].title + " " %>
-                            <% if (data[i].public == 1){ %>
-                              <%- "<img src='/img/glyphiconsunlock.png' alt='public' id='unlock'>" %> 
-                             <%} 
-                               else if (data[i].public == 0){ %> 
-                                 <%- "<img src='/img/glyphiconslock.png' alt='private' id='lock'>" %>
-                             <%}%>
-                          </h2>  
+             <div id="dashboard-title">
+                <h2>
+                  <%= data[i].title + " " %>
+                  <% if (data[i].public == 1){ %>
+                    <%- "<img src='/img/glyphiconsunlock.png' alt='public' id='unlock'>" %> 
+                   <%  } 
+                     else if (data[i].public == 0){ %> 
+                       <%- "<img src='/img/glyphiconslock.png' alt='private' id='lock'>" %>
+                    <% }%>
+                </h2>  
+                <span class="glyphicon glyphicon-option-vertical">
+                	<img src="/img/glyphicons-518-option-vertical.png">
+                </span>
 						</div>
 					</div>
 				</a>
@@ -73,6 +119,8 @@
 		</footer>
 	</div>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="/js/dashboard.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
