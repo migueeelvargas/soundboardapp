@@ -185,6 +185,17 @@ module.exports = function(app, express, conn, upload) {
     console.log(req.params);
     req.session.currsbid = req.params.sbid;
 
+    var getSbNameSQL = 
+    	"SELECT title FROM soundboards WHERE sbid =" + req.params.sbid;
+
+    var sbTitle;
+
+    conn.query(getSbNameSQL, function (err, result) {
+    	if (err) throw err;
+    	// Assign title
+    	sbTitle = result[0].title;
+    })
+
     var getSoundsSQL =
       "SELECT * FROM sounds " + "WHERE sbid = " + req.params.sbid;
 
@@ -196,6 +207,7 @@ module.exports = function(app, express, conn, upload) {
         firstName: req.session.firstName,
         lastName: req.session.lastName,
         userid: req.session.userid,
+        title: sbTitle,
         data: result
       });
     });

@@ -1,6 +1,6 @@
 <!-- views/soundboard.ejs -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Soundboard | CSE 135 HW3 </title>
 	<link rel="stylesheet" href="/css/dashboard.css">
@@ -9,11 +9,10 @@
 
 	<div class="container">
 		<header id="dashboard-header">
-			<h1>Soundboard:<i>#name</i></h1>
+			<h1>Soundboard:<i><%= title %></i></h1>
 		</header>
 
 		<section id="dashboard-upload">
-			
 
 			<!-- Trigger/Open modal -->
 			<button id="addSoundBtn">Add Sound</button>
@@ -55,17 +54,18 @@
 		<main id="dashboard-main">
 			<% for (var i = 0; i < data.length; i++) { %>
 				<div id="dashboard-thumb">
-					<div id="dashboard-img">
-						<img src="<%= data[i].image %>">
-					</div>
-					<div id="dashboard-title">
-						<h2><%= data[i].name %></h2>
-					</div>
+					<div id="dashboard-thumb-content">
+						<div id="dashboard-img" style="background-image: url('<%= data[i].image %>'); background-position: center center; background-size: cover" onclick="play()">
+							</div>
+						<div id="dashboard-title">
+							<h2><%= data[i].name %></h2>
+						</div>
 
-					<div id="soundboard-sound">
-						<audio controls>
-							<source src="<%= data[i].sound %>">
-						</audio>
+						<div id="soundboard-sound">
+							<audio controls>
+								<source src="<%= data[i].sound %>">
+							</audio>
+						</div>
 					</div>
 				</div>
 			<% } %>
@@ -75,10 +75,8 @@
 			<h3><a href="/logout">Logout</a></h3>
 		</footer>
 	</div>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 	<script src="/js/soundboard.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
 	
 </body>
 </html>

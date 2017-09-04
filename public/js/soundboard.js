@@ -24,3 +24,7 @@ window.onclick = function(event) {
 	}
 }
 
+function play(){
+
+}
+
