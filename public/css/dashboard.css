@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,700');
 
+@font-face {
+    font-family: 'Glyphicons Halflings';
+
+    src: url('/fonts/glyphicons-halflings-regular.eot');
+    src: url('/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	background-color: #eee;
@@ -54,7 +61,25 @@ body {
 	min-height: 1px;
 	width: 25%;
 	display: inline-block;
-	margin: 0;
+	margin: 10px;
+}
+
+#dashboard-title {
+	background-color: #fff;
+}
+#dashboard-title > h2 {
+	display: inline;
+}
+
+#dashboard-title > span {
+	margin-top: 15px;
+	float: right;
+}
+
+#dashboard-img {
+	width: auto;
+	height: 250px;
+	background-color: #fff;
 }
 
 #dashboard-img,
@@ -167,3 +192,4 @@ header, main, nav, section {
 	text-decoration: none;
 	cursor: pointer;
 }
+
