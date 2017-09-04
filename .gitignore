@@ -58,3 +58,4 @@ typings/
 .env
 
 # user public folder storage
+public/uploads/
