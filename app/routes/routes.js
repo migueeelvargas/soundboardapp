@@ -327,8 +327,31 @@ module.exports = function(app, express, conn, upload) {
 			});	
 		});
 	})
+  
+    //SORT: ALPHABETICAL
+     app.get('/app/alphabetical', function(req,res){
+    	var getSBalphaSQL = "SELECT * FROM soundboards " +
+			"WHERE userid = " + req.session.userid + " OR public = 1 ORDER BY title;";
 
- 
+		console.log(getSBalphaSQL);
+
+		conn.query(getSBalphaSQL, function (err, result) {
+			if (err) throw err;
+
+			data = JSON.stringify(result);
+			console.log("Data: " + data);
+
+			res.render('alphabetical.ejs', {
+				email: req.session.email,
+				firstName: req.session.firstName,
+				lastName: req.session.lastName,
+				userid: req.session.userid,
+				data: result
+			});	
+		});
+	})
+
+
   // LOG OUT OF SESSION
   app.get("/logout", function(req, res) {
     const update =

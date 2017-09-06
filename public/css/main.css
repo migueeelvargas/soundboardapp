@@ -6,17 +6,87 @@
     src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-
 body {
 	font-family: 'Open Sans', sans-serif;
-	background-color: white;
-	margin: 0;
-	padding: 0;
+	margin-top: 30px;
+  background-color: white; 
+	background-attachment: fixed;
+}
+.wrapper {
+	background-color: #fff;
+    color: gray;
+    padding: 0;
 }
 
-.wrapper {
+.headerContainer {
+	color: gray;
     background-color: white;
-    padding: 0;
+	margin-bottom: 40px;
+}
+.headerContainer img {
+	width: 75%;
+	height: auto;
+}
+.headerContainer h1 {
+	font-size: 60px;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 5px;
+	font-weight: 300;
+    color: black;
+}
+.loginContainer {
+	padding-bottom: 40px;
+	margin-bottom: 40px;
+	border-bottom: 2px solid #bbb;
+	text-transform: uppercase;
+}
+.loginContainer h1 {
+	font-size: 16px;
+	color: #555;
+}
+.loginContainer button {
+	text-transform: uppercase;
+}
+.loginContainer input {
+	text-transform: uppercase;
+	font-size: 12px;
+}
+
+.soundThumb {
+	text-align: center;
+}
+.soundThumb-listview {
+  margin-top: 20px;
+  border-bottom: 1px solid #ddd;
+}
+.soundThumb-listview img {
+  margin-right: 5%; 
+  width: 5%;
+  height: auto;
+}
+.soundThumb-listview h3 {
+  display: inline-block;
+  width: 45%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 0;
+}
+.soundThumb-listview audio {
+  width: 45%;
+  margin-right: 0;
+}
+
+.containerMain {
+	padding-bottom: 40px;
+}
+
+.footerContainer {
+	padding: 40px 0;
+	text-align: center;
+	background-color: white;
+    color: gray;
 }
 
 * {
@@ -26,15 +96,34 @@ body {
 }
 
 .container {
-	margin-right: auto;
-	margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .container-fluid {
-    padding-right: 15px;
-    padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#dashboard-img {
+	width: 250px;
+	height: 250px;
+	background-color: #fff;
     margin-right: auto;
     margin-left: auto;
+}
+
+h3 {
+    color: gray;
+	background-color: #fff;
+	text-align: center;
+	text-transform: none;
+    font-weight: 300 bold;
+	margin: 0;
+	line-height: 60px;
+	margin-top: -5px;
+	overflow: hidden;
 }
 @media (min-width: 768px) {
   .container {
@@ -50,73 +139,6 @@ body {
   .container {
     width: 1170px;
   }
-}
-
-#dashboard-header > h1 {
-	font-size: 60px;
-	text-transform: uppercase;
-	text-align: center;
-	letter-spacing: 5px;
-	font-weight: 300;
-}
-#dashboard-main > a,
-#dashboard-main > a:visited,
-#dashboard-main > a:hover,
-#dashboard-main > a:active {
-	text-decoration: none;
-	color: #000;
-}
-#dashboard-main {
-  padding-bottom: 40px;
-}
-
-#dashboard-thumb {
-	position: relative;
-	min-height: 1px;
-	width: 25%;
-	display: inline-block;
-	margin: 10px;
-}
-
-#dashboard-title {
-	background-color: #fff;
-}
-#dashboard-title > h2 {
-	/*display: inline;*/
-}
-
-#dashboard-title > span {
-	margin-top: 15px;
-	float: right;
-}
-
-#dashboard-img {
-	width: auto;
-	height: 250px;
-	background-color: #fff;
-}
-
-#dashboard-img,
-#dashboard-title {
-	padding-left: 5%;
-	padding-right: 5%;
-}
-
-#dashboard-img > img {
-	height: 100%;
-	width: 100%;
-}
-
-#dashboard-title > h2 {
-    color: gray;
-	background-color: #fff;
-	text-align: center;
-	text-transform: uppercase;
-	font-weight: 300;
-	margin: 0;
-	line-height: 60px;
-	margin-top: -5px;
-	overflow: hidden;
 }
 
 .row {
@@ -209,10 +231,8 @@ body {
   }
 }
 
-
 header, main, nav, section {
 	display: block;
-    background-color: white;
 }
 
 .clearfix:before,
@@ -253,6 +273,7 @@ header, main, nav, section {
 .navbar-collapse:after {
   clear: both;
 }
+
 @media (min-width: 768px) {
   .navbar-right .dropdown-menu {
     right: 0;
@@ -265,8 +286,6 @@ header, main, nav, section {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
-  background-color: white;
-  border-color: white;
 }
 
 @media (min-width: 768px) {
@@ -570,8 +589,7 @@ input {
     font-family: 'Glyphicons Halflings';
     font-style: normal;
     font-weight: normal;
-    line-height: 1;
-
+    float: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -775,7 +793,6 @@ input {
 .show {
     display: block;
 }
-
 .soundboardModal {
 	display: none;
 	position: fixed;

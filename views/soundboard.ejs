@@ -1,16 +1,26 @@
 <!-- views/soundboard.ejs -->
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, intitial-scale=1">
 	<title>Soundboard | CSE 135 HW3 </title>
-	<link rel="stylesheet" href="/css/dashboard.css">
+	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
+    <!--If browswer does not support js -->
+    <noscript> Your browser does not support JavaScript! </noscript>
 
-	<div class="container">
-		<header id="dashboard-header">
-			<h1>Soundboard:<i>#name</i></h1>
-		</header>
+        <!-- HEADER -->
+        <!--header id="dashboard-header"-->
+        <header class="container headerContainer">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Soundboard<h1>
+                </div>
+            </div>
+        </header>
 
 		<section id="dashboard-upload">
 			
@@ -50,31 +60,67 @@
 				</div>
 
 			</div>
-		</section>
+        </section>
 
-		<main id="dashboard-main">
-			<% for (var i = 0; i < data.length; i++) { %>
-				<div id="dashboard-thumb">
-					<div id="dashboard-img">
-						<img src="<%= data[i].image %>">
-					</div>
-					<div id="dashboard-title">
-						<h2><%= data[i].name %></h2>
-					</div>
+        <div class="container wrapper">
+            <!-- NAV BAR edited to PULLDOWN  -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
 
-					<div id="soundboard-sound">
-						<audio controls>
-							<source src="<%= data[i].sound %>">
-						</audio>
-					</div>
-				</div>
-			<% } %>
-		</main>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active">
+                                <a href="/app" id="home">Home </a>
+                            </li>
+                            <li>
+                                <a href="/app/public" id="publicOpt">Public</a>
+                            </li>
+                            <li>
+                                <a href="/app/private"id="privateOpt">Private</a>
+                            </li>
+                            <li>
+                                <a href="#" id="alphabetical" onclick="createSoundboard(data, 1, 'full');switchTheme('hpTheme');return false;">Alphabetical</a>
+                            </li>
+                            <li>
+                                <a href="/app/list" id="list">List</a>
+                            </li>
+                            <li>
+                                <a href="/logout" id="logout">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <main class="containerMain">
+                <div class="row" id="soundBoard">
 
-		<footer>
-			<h3><a href="/logout">Logout</a></h3>
-		</footer>
-	</div>
+                    <% for (var i = 0; i < data.length; i++) { %>
+
+                        <div class="col-md-4 col-sm-6 soundThumb">
+                            <img src="<%= data[i].image %>" height="150" width="150" alt=<%=data[i].name%>>
+                            <h3><%= data[i].name %></h3>
+                            <audio controls>
+                                <source src="<%= data[i].sound %>">
+                            </audio>
+                        </div>
+                    <% } %>
+                </div>
+            </main>
+     
+            <footer class="footerContainer">
+                <div class="row">
+                    <div class="col-md-12 footerContent">
+                        <p> Disclaimer: We do not own any of the characters or sounds on this soundboard. All copyrights belong to their respective creators.
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="/js/soundboard.js"></script>
