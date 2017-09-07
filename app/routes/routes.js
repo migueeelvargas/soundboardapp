@@ -561,17 +561,6 @@ module.exports = function(app, express, conn, upload) {
         data: result
       });
     });
-
-    data = JSON.stringify(result);
-    console.log("Data: " + data);
-
-    res.render("alphabetical.ejs", {
-      email: req.session.email,
-      firstName: req.session.firstName,
-      lastName: req.session.lastName,
-      userid: req.session.userid,
-      data: result
-    });
   });
 
   // LOG OUT OF SESSION
