@@ -7,6 +7,9 @@
 </head>
 <body>
 
+	<!-- If browser doesn't support JS -->
+    <noscript> Your broswer does not support JavaScript! </noscript>
+    
 	<div class="container">
 		<header id="dashboard-header">
 			<h1><%= firstName %>'s Soundboard.</h1>
@@ -33,7 +36,7 @@
 	          	<a href="/app/private"id="privateOpt">Private</a>
                 </li>
             <li>
-              <a href="#" id="alphabetical" onclick="createSoundboard(data, 1, 'full');switchTheme('hpTheme');return false;">Alphabetical</a>
+              <a href="/app/alphabetical" id="alphabetical">Alphabetical</a>
             </li>
             <li>
               <a href="/app/list" id="list">List</a>
@@ -121,10 +124,17 @@
 			<% } %>
 		</main>
 
-		<footer>
+		<footer class="footerContainer"> 
+            <div class="row">
+                <div class="col-md-12 footerContent">
+                    <p> Disclaimer: We do not own any of the characters or sounds on this soundboard. All copyrights belong to their respective creators.</p>
+                </div>
+            </div>
 		</footer>
 	</div>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/dashboard.js"></script>
 </body>
 </html>

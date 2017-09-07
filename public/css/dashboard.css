@@ -87,11 +87,13 @@ body {
 	width: 24%;
 	display: inline-block;
   margin-bottom: 30px;
+  overflow: hidden;
 }
 
 #dashboard-thumb-content {
 	padding-left: 5%;
 	padding-right: 5%;
+  overflow: hidden;
 }
 
 #dashboard-title {

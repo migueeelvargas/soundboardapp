@@ -3,15 +3,19 @@
 <html>
 <head>
 	<title>Public | CSE 135 HW3 </title>
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
+    <!--If browser does not support js -->
+    <noscript> Your browswer does not support JavaScript!</noscript>
 
-	<div class="container">
-		<header id="dashboard-header">
+	<header class="container headerContainer">
+		<div class="row col-md-12">
 			<h1><%= firstName %>'s Soundboard.</h1>
-		</header>
-
+        </div>
+    </header>
+    
+    <div class="container wrapper">
         <!-- NAV BAR edited to PULLDOWN  -->
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -33,7 +37,7 @@
 	          	<a href="/app/private"id="privateOpt">Private</a>
 	          </li>
             <li>
-              <a href="#" id="alphabetical" onclick="createSoundboard(data, 1, 'full');switchTheme('hpTheme');return false;">Alphabetical</a>
+              <a href="/app/alphabetical" id="alphabetical">Alphabetical</a>
             </li>
             <li>
               <a href="/app/list" id="list">List</a>
@@ -46,15 +50,14 @@
 	    </div>
 	  </nav>
  
-		<main id="dashboard-main">
+      <main class="containerMain">
+          <div class="row" id="soundBoard">
 			<% for (var i = 0; i < data.length; i++) { %>
 				<a href="/app/<%= userid %>/soundboard/<%= data[i].sbid %>">
-					<div id="dashboard-thumb">
-						<div id="dashboard-img">
-							<img src="<%= data[i].thumbnail %>">
-						</div>
-                        <div id="dashboard-title">
-                          <h2>
+					<div class="col-md-4 col-sm-6 soundThumb">
+                        <div id="dashboard-img" style="background-image: url('<%= data[i].thumbnail %>');">
+                        </div>
+                          <h3>
                             <%= data[i].title + " " %>
                             <% if (data[i].public == 1){ %>
                               <%- "<img src='/img/glyphiconsunlock.png' alt='public' id='unlock'>" %> 
@@ -62,17 +65,23 @@
                                else if (data[i].public == 0){ %> 
                                  <%- "<img src='/img/glyphiconslock.png' alt='private' id='lock'>" %>
                              <%}%>
-                          </h2>  
-						</div>
+                          </h3>  
 					</div>
 				</a>
-			<% } %>
+            <% } %>
+        </div>
 		</main>
 
-		<footer>
-		</footer>
+        <footer class="footerContainer">
+            <div class="row col-md-12 footerContent">
+            <p>Disclaimer: We do not own any of the characters or sounds on this soundboard. All copyrights belong to their respective creators.</p>
+            </div>
+        </footer>
 	</div>
 
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/dashboard.js"></script>
 </body>
 </html>

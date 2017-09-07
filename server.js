@@ -7,6 +7,7 @@ const mime = require("mime-types");
 
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const validator = require('express-validator');
 const session = require("express-session");
 
 const path = require("path");
@@ -30,6 +31,8 @@ conn.connect(function(err) {
 app.use(morgan("dev")); // log every request to the console
 app.use(bodyParser.urlencoded({ extended: true })); // get info from HTML forms
 app.use(bodyParser.json());
+app.use(validator());
+
 
 // sets up ejs as view engine
 app.set("view engine", "ejs");
