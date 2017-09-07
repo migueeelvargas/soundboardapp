@@ -209,6 +209,7 @@ module.exports = function(app, express, conn, upload) {
         lastName: req.session.lastName,
         userid: req.session.userid,
         title: sbTitle,
+        sbid: req.params.sbid,
         data: result
       });
     });
@@ -339,6 +340,59 @@ module.exports = function(app, express, conn, upload) {
 			});	
 		});
 	})
+
+  app.delete('/app/soundboard/:sbid', function (req, res) {
+
+    var deleteSoundsSQL =
+        "DELETE FROM sounds WHERE sbid = " + req.params.sbid;
+
+    
+    console.log("DELETE requested: " + deleteSoundsSQL);
+
+    conn.query(deleteSoundsSQL, function (err, result) {
+      if (err) throw err;
+
+        var deleteSbSQL = 
+          "DELETE FROM soundboards WHERE sbid = " + req.params.sbid;
+          
+        conn.query(deleteSbSQL, function (err, result) {
+          if (err) throw err;
+
+          console.log("Soundboard deleted!");
+        })
+
+      req.method = 'GET';
+
+      res.redirect(303,'/app');
+    })
+  })
+
+  app.delete('/app/sound/:soundid', function (req, res) {
+
+    var deleteSoundSQL = "DELETE FROM sounds WHERE soundid = " + req.params.soundid;
+
+    conn.query(deleteSoundSQL, function (err, result) {
+      if(err) throw err;
+
+      console.log("Sound deleted!")
+
+      res.send('/app/' + req.session.userid + '/soundboard/' + req.session.currsbid);
+    })
+  })
+
+  app.put('/app/sound/:soundid', function (req, res) {
+
+    var updateSQL = "UPDATE sounds SET name = \'" + 
+      req.body.name + "\' WHERE soundid = " + req.params.soundid;
+
+    conn.query(updateSQL, function (err, result) {
+      if(err) throw err;
+
+      console.log("Sound updated!");
+
+      res.send('/app/' + req.session.userid + '/soundboard/' + req.session.currsbid);
+    })
+  })
 
  
   // LOG OUT OF SESSION

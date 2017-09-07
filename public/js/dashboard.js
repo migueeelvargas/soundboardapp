@@ -36,3 +36,11 @@ window.onclick = function(event) {
 		modal.style.display = "none";
 	}
 }
+
+// Play sounds on img click
+
+
+
+function play() {
+	document.getElementById('SbSound').play();
+}

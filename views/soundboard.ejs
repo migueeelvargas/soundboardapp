@@ -53,17 +53,36 @@
 
 		<main id="dashboard-main">
 			<% for (var i = 0; i < data.length; i++) { %>
-				<div id="dashboard-thumb">
+				<div id="dashboard-thumb" data-no="<%= i %>">
 					<div id="dashboard-thumb-content">
-						<div id="dashboard-img" style="background-image: url('<%= data[i].image %>'); background-position: center center; background-size: cover" onclick="play()">
-							</div>
+						<div id="dashboard-img" style="background-image: url('<%= data[i].image %>'); background-position: center center; background-size: cover" onclick="playAudio()">
+						</div>
 						<div id="dashboard-title">
 							<h2><%= data[i].name %></h2>
+							<span class="sbEdit"><button id="editSoundBtn" onclick="showModal('<%= data[i].soundid %>','<%= data[i].name %>', <%= i %>)">&#xe065;</button></span>
+							
+							<div id="editM" class="editModal editSoundModal">
+								<div class="editSoundContent">
+									<span id="editClose" class="close">&times;</span>
+
+									<form>
+										<label for="soundName">Sound Name: 
+											<input id="editSoundName" type="text" name="soundName" placeholder="<%= data[i].name %>">
+										</label>
+										<br>
+										<button onclick="editSound(<%= data[i].soundid %>)" id="editBtn">Change</button>
+									</form>
+									
+									<button onclick="deleteSound(<%= data[i].soundid %>)" class="deleteSound">Delete Sound.</button>
+
+								</div>
+							</div>
+
 						</div>
 
 						<div id="soundboard-sound">
-							<audio controls>
-								<source src="<%= data[i].sound %>">
+							<audio id="<%= data[i].soundid %>" data-src="<%= data[i].sound %>">
+								<!-- <source src="<%= data[i].sound %>"> -->
 							</audio>
 						</div>
 					</div>
@@ -72,10 +91,11 @@
 		</main>
 
 		<footer>
-			<h3><a href="/logout">Logout</a></h3>
+			<button onclick="deleteBoard(<%= sbid %>)" id="deleteBoardBtn">Delete Board.</button>
 		</footer>
 	</div>
 
+	<script src="/js/jquery-3.2.1.min.js"></script>
 	<script src="/js/soundboard.js"></script>
 	
 </body>
